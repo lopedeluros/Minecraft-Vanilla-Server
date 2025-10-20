@@ -1,0 +1,2 @@
+- Remove server.jar -> download on build
+- Auth_user fallback value fix

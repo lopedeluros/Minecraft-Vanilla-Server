@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  minecraft:
+    image: minecraft-server
+    container_name: mcserver
+    ports:
+      - 25565:25565 # Port where players log into
+      - 25575:25575 # RCON Port
+    stdin_open: true
+    tty: true
+    deploy:
+      resources:
+        limits:
+          memory: 4G  # Ram assigned
+    volumes:
+      - data:/minecraft # Persistence
+      - ./server-config.txt:/minecraft/server.properties # Copy the properties
+      - ./world:/minecraft/world # Copy the world
+
+volumes:
+  data: {}
