@@ -83,11 +83,19 @@ The [file](telegram_utils/.env) must be correctly configured in order to proceed
 
 ## Launch bot as docker swarm
 
+Init swarm if not done
+
+```bash
+docker swarm init
+```
+
 ### Create network
 
 ```bash
 docker network create -d overlay minecraft-net 
 ```
+
+### Launch bot process
 
 ```bash
 docker stack deploy -c telegram_utils/mcbot.yml mcbot
