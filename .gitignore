@@ -1,3 +1,4 @@
 telegram_utils/.env
 .venv/
 server.jar
+server-config.txt

@@ -1,5 +1,5 @@
+cat <<EOF > ../server-config.txt
 #Minecraft server properties
-#Wed Oct 15 17:07:01 UTC 2025
 accepts-transfers=false
 allow-flight=false
 broadcast-console-to-ops=true
@@ -23,7 +23,7 @@ hardcore=false
 hide-online-players=false
 initial-disabled-packs=
 initial-enabled-packs=vanilla
-level-name=Luzero_dictatorship
+level-name=minecraft
 level-seed=
 level-type=minecraft\:normal
 log-ips=true
@@ -47,7 +47,7 @@ player-idle-timeout=0
 prevent-proxy-connections=false
 query.port=25565
 rate-limit=0
-rcon.password=lapaellanollevachorizo
+rcon.password=yourpw
 rcon.port=25575
 region-file-compression=deflate
 require-resource-pack=false
@@ -65,4 +65,5 @@ text-filtering-config=
 text-filtering-version=0
 use-native-transport=true
 view-distance=10
-white-list=true
+white-list=false
+EOF
