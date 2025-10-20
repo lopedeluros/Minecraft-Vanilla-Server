@@ -16,6 +16,13 @@ services:
       - data:/minecraft # Persistence
       - ./server-config.txt:/minecraft/server.properties # Copy the properties
       - ./world:/minecraft/world # Copy the world
+    networks:
+      - minecraft-net
+
 
 volumes:
   data: {}
+
+networks:
+  minecraft-net:
+    external: true

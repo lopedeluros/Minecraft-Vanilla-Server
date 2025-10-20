@@ -2,7 +2,21 @@
 
 This repository allows an user to launch a Minecraft server using Docker through Docker compose.
 
-The repository optionally allows to launch a Telegram Bot to send commands through it. This bot is meant to be launched through docker swarm and shares the same network as the server.
+The repository optionally allows to launch a Telegram Bot to send commands through it. This bot is meant to be launched through docker swarm and shares the same network as the server. This functionality will allow you and your friends to control it externally without needing advanced knowledge of docker. 
+
+Why not just give op to everyone?
+Giving everyone OP would be the simplest solution. However, in my experience, having OP available in-game can be tempting leading to commands like
+
+```bash
+set time day
+tp me myfriend
+gamemode creative
+```
+
+Which may disrupt the intended gameplay experience. As probably users will be tempted to use op privileges whenever something has gone wrong:
+- An accidental fall or mob ambush leading to a respawn -> 'No worries I'll just tp to you guys'
+- Building is so boring, I dont wanna gather stuff -> 'I'll just create it in creative mode'
+
 
 ## Current configuration
 
@@ -44,9 +58,18 @@ CAUTION. DO NOT USE CTRL + C or it will end the process with the server.
 
 In your
 
-## Optional. Launch bot
+# Optional. Launch bot
 
-In [telegram_utils](telegram_utils/.) create a file named .env with the following content:
+The bot currently listens for messages from users whose Telegram IDs are listed in the AUTHORIZED_USERS variable inside the [.env](telegram_utils/.env) file.
+
+Authorized users can send Minecraft server commands to the bot, which will execute them directly on the server.
+Additionally, if you don’t know your own Telegram ID, you can simply message the bot — it will reply with your ID.
+
+Current commands are:
+- /mc <minecraft-command>. This is used to send a command to the bot, it will redirect it to the server.
+- /myid. Use it to ask the bot for the ID you need to use to enable its service. 
+
+To set up the environment, create the .env file inside the telegram_utils
 
 ```bash
 cat <<EOF > ./telegram_utils/.env
@@ -54,5 +77,25 @@ TELEGRAM_TOKEN=askBotFather
 RCON_PASSWORD=configuredIn:server-config/rcon.password
 AUTHORIZED_USERS=1,2,3
 EOF
+```
+
+The [file](telegram_utils/.env) must be correctly configured in order to proceed
+
+## Launch bot as docker swarm
+
+### Create network
+
+```bash
+docker network create -d overlay minecraft-net 
+```
+
+```bash
+docker stack deploy -c telegram_utils/mcbot.yml mcbot
+```
+
+### Remove
+
+```bash
+docker stack rm mcbot
 ```
 
