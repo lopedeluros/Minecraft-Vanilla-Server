@@ -3,7 +3,7 @@ version: "3.9"
 services:
   minecraft:
     image: minecraft-server
-    container_name: mcserver
+    container_name: minecraft-server
     ports:
       - 25565:25565 # Port where players log into
     stdin_open: true
@@ -15,7 +15,6 @@ services:
     volumes:
       - data:/minecraft # Persistence
       - ./server-config.txt:/minecraft/server.properties # Copy the properties
-      - ./world:/minecraft/world # Copy the world
     networks:
       - minecraft-net
 

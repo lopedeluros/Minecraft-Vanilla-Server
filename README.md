@@ -20,7 +20,7 @@ Which may disrupt the intended gameplay experience. As probably users will be te
 
 ## Current configuration
 
-- Minecraft-Vanilla version 1.21.8
+- Minecraft-Vanilla version latest
 - Python 3.12.3. For library info, consult [requirements](telegram_utils/requirements.txt)
 
 # Steps to deploy on local
@@ -36,6 +36,8 @@ Which may disrupt the intended gameplay experience. As probably users will be te
 ```bash
 docker build -t minecraft-server .
 ```
+
+CAUTION. DO NOT rebuild the image on production server as it may lead to a version update which can corrupt your worlds.
 
 ## Deploy (commands only available with compose)
 
@@ -58,7 +60,7 @@ CAUTION. DO NOT USE CTRL + C or it will end the process with the server.
 
 In your
 
-# Optional. Launch bot
+## Optional. Launch bot
 
 The bot currently listens for messages from users whose Telegram IDs are listed in the AUTHORIZED_USERS variable inside the [.env](telegram_utils/.env) file.
 
@@ -81,7 +83,7 @@ EOF
 
 The [file](telegram_utils/.env) must be correctly configured in order to proceed
 
-## Launch bot as docker swarm
+### Launch bot as docker swarm
 
 Init swarm if not done
 
@@ -89,19 +91,19 @@ Init swarm if not done
 docker swarm init
 ```
 
-### Create network
+#### Create network
 
 ```bash
-docker network create -d overlay minecraft-net 
+docker network create -d overlay --attachable minecraft-net
 ```
 
-### Launch bot process
+#### Launch bot process
 
 ```bash
 docker stack deploy -c telegram_utils/mcbot.yml mcbot
 ```
 
-### Remove
+#### Remove bot process
 
 ```bash
 docker stack rm mcbot
