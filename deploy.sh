@@ -20,10 +20,17 @@ sshpass -p "${server_pwd}" ssh -t -p "${server_port}" "${server_user}@${server_u
   sudo usermod -aG docker ${server_user}
 "
 
+sshpass -p "${server_pwd}" ssh -t -p "${server_port}" "${server_user}@${server_url}" "
+  docker swarm init || true
+  docker network create -d overlay --attachable minecraft-net || true
+"
+
 # Copy image to server
 sshpass -p "${server_pwd}" scp -P "${server_port}" minecraft-server.tar "${server_user}@${server_url}:~/${location}/"
 sshpass -p "${server_pwd}" scp -P "${server_port}" docker-compose.yml "${server_user}@${server_url}:~/${location}/"
 sshpass -p "${server_pwd}" scp -P "${server_port}" server-config.txt "${server_user}@${server_url}:~/${location}/"
+sshpass -p "${server_pwd}" scp -P "${server_port}" utils/server.sh "${server_user}@${server_url}:~/${location}/"
+
 
 # Load and run container remotely
 sshpass -p "${server_pwd}" ssh -p "${server_port}" "${server_user}@${server_url}" "
@@ -33,8 +40,6 @@ sshpass -p "${server_pwd}" ssh -p "${server_port}" "${server_user}@${server_url}
       echo 'Server is already running! Deployment aborted to prevent disaster.' &&
       exit 1
   else
-    docker swarm init &&
-    docker network create -d overlay --attachable minecraft-net &&
     docker-compose -f docker-compose.yml up -d
   fi
   rm minecraft-server.tar

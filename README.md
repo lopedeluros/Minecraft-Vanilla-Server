@@ -109,3 +109,19 @@ docker stack deploy -c telegram_utils/mcbot.yml mcbot
 docker stack rm mcbot
 ```
 
+# Automatic deployment
+
+
+## Generate required config file a fill it up
+
+```bash
+cat <<EOF > ./telegram_utils/.env
+server_url=addr
+server_user=linux
+server_port=22
+server_pwd=linux
+location=your-working-dir/MinecraftVanilla
+EOF
+```
+
+

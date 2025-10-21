@@ -21,3 +21,5 @@
 - Dockerize Bot
 - Separate Bot documentation
 - Do bot documentation
+- Add custom message depending on the user and what they are going to do
+- Add posibility of restarting server via telegram
