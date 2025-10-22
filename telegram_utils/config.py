@@ -10,7 +10,7 @@ RCON_PASSWORD = os.getenv('RCON_PASSWORD','')
 authorized_users_str = os.getenv('AUTHORIZED_USERS', '')
 
 # Convert string to list of integers
-if authorized_users_str:
+if authorized_users_str != '':
     AUTHORIZED_USERS = [int(x) for x in authorized_users_str.split(',')]
 else:
     AUTHORIZED_USERS = []

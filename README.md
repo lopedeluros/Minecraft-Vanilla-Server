@@ -20,7 +20,7 @@ Which may disrupt the intended gameplay experience. As probably users will be te
 
 ## Current configuration
 
-- Minecraft-Vanilla version latest
+- Minecraft-Vanilla version 1.21.10
 - Python 3.12.3. For library info, consult [requirements](telegram_utils/requirements.txt)
 
 # Steps to deploy on local
@@ -48,7 +48,7 @@ docker compose up -d
 ## Access the server's GUI to launch commands
 
 ```bash
-docker attach mcserver
+docker attach minecraft-server
 ```
 
 ### To escape use
@@ -122,6 +122,12 @@ server_port=22
 server_pwd=linux
 location=your-working-dir/MinecraftVanilla
 EOF
+```
+
+## Execute deploy script
+
+```bash
+bash deploy.sh
 ```
 
 

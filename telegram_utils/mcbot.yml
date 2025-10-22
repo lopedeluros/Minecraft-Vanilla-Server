@@ -2,8 +2,9 @@ version: "3.9"
 
 services:
   telegram-bot:
+    image: telegram-bot
     env_file:
-      - ./telegram_utils/.env
+      - ./.env
     volumes:
       - .:/app
     networks:
