@@ -1,0 +1,72 @@
+
+
+mc:
+  description: Sends a command to the Minecraft server
+  commands:
+    whitelist:
+      onSubAttr: 
+        add:
+          msg: 
+            player: 
+              id: 2 
+              answer: '<name> you are giving access to more people, are you certain this is a good idea?' # Use <name> to use its telegram name
+            any: 'You are giving access to more people, are you certain this is a good idea?'
+            confirm: True
+          banned: False
+        off:
+          msg: 
+            any: 'You are not allowed to open server to public as this will lead to chaos'
+            confirm: False
+          banned: True
+      msg: ""
+      banned: False
+    ban:
+      onSubAttr: {}
+      msg:  
+        any: 'You are banning someone from entering world, are you certain whatever it did is deserved?'
+        confirm: False 
+      banned: False
+    stop:
+      onSubAttr: []
+      msg:  
+        any: 'This command is forbbiden, if you need to stop/restart server use sudo instead'
+        confirm: False 
+      banned: True
+    save-all:
+      onSubAttr: []
+      msg: 
+        any: 'You saved world status'
+        confirm: False
+      banned: False
+    transfer:
+      onSubAttr: []
+      msg:  
+        any: 'This command is forbbiden.'
+        confirm: False 
+      banned: True
+    op:
+      onSubAttr: []
+      msg:  
+        any: 'This command is forbbiden.'
+        confirm: False 
+      banned: False
+  admin: False
+myid:
+  description: Returns requester user its telegram user Id, this can be used to later update Authorized users
+  commands: {}
+  admin: False
+help: 
+  description: Recieves list of operations available for telegram admin user
+  commands: {}
+  admin: False
+sudo:
+  description: Advanced command
+  admin: True
+  commands:
+    start:
+    stop:
+    restart:
+    status:
+
+# msg in ?
+# check if first and second parameter are in

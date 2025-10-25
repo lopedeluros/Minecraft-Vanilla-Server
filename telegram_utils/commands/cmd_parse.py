@@ -1,13 +1,22 @@
+
 class CmdParse():
 
-    def check_command(cmd, rsp):
+    @staticmethod
+    def parse_command(cmd, rsp):
 
-        print(rsp.split('/'))
+        
+
         if cmd == 'help':   #Helps parse the help information to be more presentable to the user
 
             msg = ''
             for c in rsp.split('/'):
-                msg += ("- " +c+"\n")
+                if '|' in c:
+                    attrs = ': \n'
+                    for a in c.split('|'):
+                        attrs += f'\t -{a}\n'
+                    msg += c + attrs
+                else:
+                    msg += ("• " +c+"\n")
             return msg
 
         else:

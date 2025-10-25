@@ -1,2 +1,3 @@
 python-telegram-bot>=22.5
 mcrcon>=0.7.0
+PyYAML>=6.0.3

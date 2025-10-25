@@ -1,0 +1,5 @@
+- Get new link to Minecraft server jar file
+- Check Server commands, update bot script
+- Check server-config diff
+- Check Java version compatibility
+- Check bot custom parsing

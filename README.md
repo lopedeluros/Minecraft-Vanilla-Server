@@ -1,6 +1,6 @@
 # About this repository.
 
-This repository allows an user to launch a Minecraft server using Docker through Docker compose.
+This repository allows an user to launch a Minecraft server using Docker through Docker compose. The server is intended for playing with friends, not for a big deployment.
 
 The repository optionally allows to launch a Telegram Bot to send commands through it. This bot is meant to be launched through docker swarm and shares the same network as the server. This functionality will allow you and your friends to control it externally without needing advanced knowledge of docker. 
 

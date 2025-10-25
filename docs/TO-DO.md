@@ -29,3 +29,4 @@
 - Add custom message depending on the user and what they are going to do -> In progress
 - Add posibility of restarting server via telegram -> In progress
 - Add more logic to bot -> In progress
+- Replace Print with logger utils
