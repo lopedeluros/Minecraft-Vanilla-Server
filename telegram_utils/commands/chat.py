@@ -1,4 +1,5 @@
 import yaml
+import os
 
 class Chat():
 
@@ -9,8 +10,13 @@ class Chat():
     def read_commands():
 
         try:
-            with open("./commands.yml") as f:
+
+            current_dir = os.path.dirname(__file__)
+            yaml_path = os.path.join(current_dir, "commands.yaml")
+
+            with open(yaml_path) as f:
                 data = yaml.safe_load(f)
+                print("Custom rules found!")
                 return data
         except Exception as e:
             print("Chat custom rules could not be loaded, default config is applied...")
@@ -49,12 +55,20 @@ class Chat():
                     else: 
                         return True, cnf_msg 
 
-
+    
+    def get_help(self, admin=False):
+        cnf = self.chat_config
+        msg = ''
+        for cmd in cnf.keys():
             
-            
+            if admin:
+                msg += '• /' + cmd + f': {self.return_operation_desc(cmd)}' + '\n'
+
+            elif cnf[cmd]['admin'] == False:
+                msg += '• /' + cmd + f': {self.return_operation_desc(cmd)}' + '\n'
+        return msg
 
 
-        
     def return_operation_desc(self, operation):
 
         cnf = self.chat_config
@@ -62,7 +76,7 @@ class Chat():
             return "That is not an operation."
         
         else:
-            cnf[operation]['description']
+            return cnf[operation]['description']
 
         
 

@@ -15,7 +15,7 @@ AUTHORIZED_USER_ID = config.AUTHORIZED_USERS
 TELEGRAM_TOKEN = config.TELEGRAM_TOKEN
 RCON_PASSWORD = config.RCON_PASSWORD
 
-COMMANDS = ['myid','mc','sudo', 'help']
+chat = None
 
 # Function to send a Minecraft command via RCON
 def send_mc_command(cmd: str):
@@ -23,14 +23,7 @@ def send_mc_command(cmd: str):
         resp = mcr.command(cmd)
         return resp
 
-def get_bot_commands():
-
-    msg = ''
-    for cmd in COMMANDS:
-        msg += '• /' + cmd + '\n'
-    return msg 
     
-
 # Execute Minecraft Server Command
 async def mc(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user_id = update.effective_user.id
@@ -45,7 +38,6 @@ async def mc(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     command = " ".join(context.args)
     try:
 
-        chat = Chat()
         msg_cnf, user_msg = chat.check_mc_command(command)
 
         if msg_cnf:
@@ -57,14 +49,14 @@ async def mc(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
                 
                 user_rsp = f"✅ Server replied:\n{msg}"
                 if user_msg != '':
-                    user_rsp += f"\n {user_msg}"
+                    user_rsp += f"\n{user_msg}"
             
                 await update.message.reply_text(user_rsp)
             else:
 
                 user_rsp = f"✅ Command executed: {command}"
                 if user_msg != '':
-                    user_rsp += f"\n {user_msg}"
+                    user_rsp += f"\n{user_msg}"
 
                 await update.message.reply_text(user_rsp)
         
@@ -95,9 +87,11 @@ async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user_id = update.effective_user.id
 
     if user_id not in AUTHORIZED_USER_ID:
-        await update.message.reply_text(f'• /myid \n• /help')   #TODO define commands in json with privilege level, also make it appear as <ul> elements on chat
+        help_msg = chat.get_help(admin=False)
+        await update.message.reply_text(help_msg)
     else:
-        await update.message.reply_text(get_bot_commands())
+        help_msg = chat.get_help(admin=True)
+        await update.message.reply_text(help_msg)
         
     
 
@@ -133,6 +127,8 @@ if __name__ == "__main__":
                                 "user_id": id
           }
         )
+
+    chat = Chat()
 
     app.add_handler(CommandHandler("mc", mc))
     app.add_handler(CommandHandler("sudo", sudo))

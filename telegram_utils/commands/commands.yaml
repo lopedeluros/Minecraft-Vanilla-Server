@@ -47,7 +47,7 @@ myid:
   commands: {}
   admin: False
 help: 
-  description: Recieves list of operations available for telegram admin user
+  description: Recieves list of operations available for telegram admin/noadmin user
   commands: {}
   admin: False
 sudo:
