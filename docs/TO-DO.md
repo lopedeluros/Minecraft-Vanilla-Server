@@ -30,3 +30,5 @@
 - Add posibility of restarting server via telegram -> In progress
 - Add more logic to bot -> In progress
 - Replace Print with logger utils
+- General Documentation
+- Being able to use confirmations

@@ -6,51 +6,42 @@ mc:
     whitelist:
       onSubAttr: 
         add:
-          msg: 
-            player: 
-              id: 2 
-              answer: '<name> you are giving access to more people, are you certain this is a good idea?' # Use <name> to use its telegram name
-            any: 'You are giving access to more people, are you certain this is a good idea?'
-            confirm: True
+          msg: '<name> you are giving access to more people, are you certain this is a good idea?'
+          confirm: True
           banned: False
         off:
-          msg: 
-            any: 'You are not allowed to open server to public as this will lead to chaos'
-            confirm: False
+          msg: 'You are not allowed to open server to public as this will lead to chaos'
+          confirm: False
           banned: True
       msg: ""
+      confirm: False
       banned: False
     ban:
       onSubAttr: {}
-      msg:  
-        any: 'You are banning someone from entering world, are you certain whatever it did is deserved?'
-        confirm: False 
+      msg: 'You are banning someone from entering world, are you certain whatever it did is deserved?'
+      confirm: False 
       banned: False
     stop:
-      onSubAttr: []
-      msg:  
-        any: 'This command is forbbiden, if you need to stop/restart server use sudo instead'
-        confirm: False 
+      onSubAttr: {}
+      msg: 'This command is forbbiden, if you need to stop/restart server use sudo instead'
+      confirm: False 
       banned: True
     save-all:
-      onSubAttr: []
-      msg: 
-        any: 'You saved world status'
-        confirm: False
+      onSubAttr: {}
+      msg: 'You saved world status'
+      confirm: False
       banned: False
     transfer:
-      onSubAttr: []
-      msg:  
-        any: 'This command is forbbiden.'
-        confirm: False 
+      onSubAttr: {}
+      msg: 'This command is forbbiden.'
+      confirm: False 
       banned: True
     op:
-      onSubAttr: []
-      msg:  
-        any: 'This command is forbbiden.'
-        confirm: False 
+      onSubAttr: {}
+      msg: 'This command is forbbiden.'
+      confirm: False 
       banned: False
-  admin: False
+  admin: True
 myid:
   description: Returns requester user its telegram user Id, this can be used to later update Authorized users
   commands: {}
@@ -60,13 +51,26 @@ help:
   commands: {}
   admin: False
 sudo:
-  description: Advanced command
+  description: Advanced operations for server functionality
   admin: True
   commands:
     start:
+      onSubAttr: {}
+      msg: 'Starting the server...'
+      confirm: False 
+      banned: False
     stop:
+      onSubAttr: {}
+      msg: 'Stopping the server...'
+      confirm: True 
+      banned: False
     restart:
+      onSubAttr: {}
+      msg: 'Restarting the server...'
+      confirm: True 
+      banned: False
     status:
-
-# msg in ?
-# check if first and second parameter are in
+      onSubAttr: {}
+      msg: 'Server status is: <status>'
+      confirm: False 
+      banned: False

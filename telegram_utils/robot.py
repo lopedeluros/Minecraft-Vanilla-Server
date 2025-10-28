@@ -45,7 +45,8 @@ async def mc(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     command = " ".join(context.args)
     try:
 
-        msg_cnf, user_msg = Chat.check_command(command)
+        chat = Chat()
+        msg_cnf, user_msg = chat.check_mc_command(command)
 
         if msg_cnf:
             
@@ -56,14 +57,14 @@ async def mc(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
                 
                 user_rsp = f"✅ Server replied:\n{msg}"
                 if user_msg != '':
-                    user_rsp += "\n{user_msg}"
+                    user_rsp += f"\n {user_msg}"
             
                 await update.message.reply_text(user_rsp)
             else:
 
                 user_rsp = f"✅ Command executed: {command}"
                 if user_msg != '':
-                    user_rsp += "\n{user_msg}"
+                    user_rsp += f"\n {user_msg}"
 
                 await update.message.reply_text(user_rsp)
         

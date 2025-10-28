@@ -4,8 +4,6 @@ class CmdParse():
     @staticmethod
     def parse_command(cmd, rsp):
 
-        
-
         if cmd == 'help':   #Helps parse the help information to be more presentable to the user
 
             msg = ''

@@ -3,29 +3,55 @@ import yaml
 class Chat():
 
     def __init__(self):
-        chat_config = self.read_commands()
+        self.chat_config = self.read_commands()
 
     @staticmethod
     def read_commands():
 
         try:
-            with open("commands.yml") as f:
+            with open("./commands.yml") as f:
                 data = yaml.safe_load(f)
+                return data
         except Exception as e:
             print("Chat custom rules could not be loaded, default config is applied...")
             return {}
     
     def check_mc_command(self, command):
 
-        cnf = self.chat_config
-        
-        if cnf == {}:
+        if self.chat_config == {}:
             return True, ""
-        elif command not in cnf['mc']['commands']:
+
+        cnf = self.chat_config['mc']['commands']
+        cmd = command.split(' ')[0]
+        attr = ''
+        if len(command.split(' '))>1:
+            attr = command.split(' ')[1]
+        
+        
+        if cmd not in cnf.keys():
             return True, ""
         else:
+            if cnf[cmd]['onSubAttr'] == {}: # Check whole command
+                
+                cnf_msg = cnf[cmd]['msg']
+                if cnf[cmd]['banned']:
+                    return False, cnf_msg
+                else: 
+                    return True, cnf_msg                
 
-            print("TODO")
+            else: # Check subattr
+                if attr in cnf[cmd]['onSubAttr'].keys():
+                    cnf_sub = cnf[cmd]['onSubAttr'][attr]
+
+                    cnf_msg = cnf_sub['msg']
+                    if cnf_sub['banned']:
+                        return False, cnf_msg
+                    else: 
+                        return True, cnf_msg 
+
+
+            
+            
 
 
         

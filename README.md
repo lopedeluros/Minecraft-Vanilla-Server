@@ -112,7 +112,7 @@ docker stack rm mcbot
 # Automatic deployment
 
 
-## Generate required config file a fill it up
+## Generate required config file and fill it up
 
 ```bash
 cat <<EOF > ./telegram_utils/.env
