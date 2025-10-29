@@ -71,16 +71,6 @@ async def mc(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def wid(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(f'Your ID is {update.effective_user.id}')
 
-# Advanced Minecraft server commands start/reboot/stop 
-async def sudo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    user_id = update.effective_user.id  #TODO
-    if user_id not in AUTHORIZED_USER_ID:
-        await update.message.reply_text("Unauthorized.")
-        return
-
-    if not context.args:
-        await update.message.reply_text("Usage: /sudo start|stop|status|reset") # TODO, maybe parametrize this too?
-        return 
 
 # Advanced Minecraft server commands start/reboot/stop 
 async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -103,7 +93,7 @@ if __name__ == "__main__":
 
     # Set commands
     ## Regular user
-    bot = Bot(token=TELEGRAM_TOKEN) #TODO store them in a json with description and privilege level
+    bot = Bot(token=TELEGRAM_TOKEN) #TODO this still does not work
 
     commands = [
         BotCommand("myid", "Returns your user ID"),
@@ -116,9 +106,7 @@ if __name__ == "__main__":
     advanced_commands = [
             {"command": "help", "description": "Get commands available"},
             {"command": "myid", "description": "Returns your user ID"},
-            {"command": "mc", "description": "Executes server command"},
-            {"command": "sudo", "description": "Execute administration commands to the server instance"}
-          ]
+            {"command": "mc", "description": "Executes server command"}          ]
     for id in AUTHORIZED_USER_ID:
 
         bot.set_my_commands(commands=advanced_commands,
@@ -131,7 +119,6 @@ if __name__ == "__main__":
     chat = Chat()
 
     app.add_handler(CommandHandler("mc", mc))
-    app.add_handler(CommandHandler("sudo", sudo))
     app.add_handler(CommandHandler("myid", wid))
     app.add_handler(CommandHandler("help", help))
 

@@ -50,27 +50,3 @@ help:
   description: Recieves list of operations available for telegram admin/noadmin user
   commands: {}
   admin: False
-sudo:
-  description: Advanced operations for server functionality
-  admin: True
-  commands:
-    start:
-      onSubAttr: {}
-      msg: 'Starting the server...'
-      confirm: False 
-      banned: False
-    stop:
-      onSubAttr: {}
-      msg: 'Stopping the server...'
-      confirm: True 
-      banned: False
-    restart:
-      onSubAttr: {}
-      msg: 'Restarting the server...'
-      confirm: True 
-      banned: False
-    status:
-      onSubAttr: {}
-      msg: 'Server status is: <status>'
-      confirm: False 
-      banned: False

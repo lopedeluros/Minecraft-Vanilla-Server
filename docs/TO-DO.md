@@ -27,8 +27,16 @@
 - Separate Bot documentation
 - Do bot documentation
 - Add custom message depending on the user and what they are going to do -> In progress
-- Add posibility of restarting server via telegram -> In progress
+- Add posibility of restarting server via telegram -> NP/TC
 - Add more logic to bot -> In progress
 - Replace Print with logger utils
 - General Documentation
 - Being able to use confirmations
+
+<CURRENT>
+- Separate Bot documentation
+- Do bot documentation
+- Replace Print with logger utils
+- General Documentation
+- Being able to use confirmations
+- Fix command enlisting
