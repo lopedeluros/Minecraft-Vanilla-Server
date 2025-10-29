@@ -6,7 +6,7 @@ mc:
     whitelist:
       onSubAttr: 
         add:
-          msg: '<name> you are giving access to more people, are you certain this is a good idea?'
+          msg: 'You are giving access to more people, are you certain this is a good idea?'
           confirm: True
           banned: False
         off:

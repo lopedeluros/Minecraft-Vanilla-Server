@@ -33,10 +33,7 @@
 - General Documentation
 - Being able to use confirmations
 
-<CURRENT>
-- Separate Bot documentation
-- Do bot documentation
+29/10
 - Replace Print with logger utils
-- General Documentation
-- Being able to use confirmations
-- Fix command enlisting
+- Being able to use confirmations for certain commands
+- Fix command enlisting on telegram API

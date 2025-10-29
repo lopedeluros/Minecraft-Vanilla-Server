@@ -23,7 +23,7 @@ Which may disrupt the intended gameplay experience. As probably users will be te
 - Minecraft-Vanilla version 1.21.10
 - Python 3.12.3. For library info, consult [requirements](telegram_utils/requirements.txt)
 
-# Steps to deploy on local
+# Steps to deploy on local (Quickstart)
 
 ## Configure server
 
@@ -55,10 +55,6 @@ docker attach minecraft-server
 Ctrl+P, Ctrl+Q
 
 CAUTION. DO NOT USE CTRL + C or it will end the process with the server.
-
-### Accesing the server
-
-In your
 
 ## Optional. Launch bot
 
@@ -109,25 +105,7 @@ docker stack deploy -c telegram_utils/mcbot.yml mcbot
 docker stack rm mcbot
 ```
 
-# Automatic deployment
+# Documentation
 
-
-## Generate required config file and fill it up
-
-```bash
-cat <<EOF > ./telegram_utils/.env
-server_url=addr
-server_user=linux
-server_port=22
-server_pwd=linux
-location=your-working-dir/MinecraftVanilla
-EOF
-```
-
-## Execute deploy script
-
-```bash
-bash deploy.sh
-```
-
+- [Automatic deployment via shell script](./docs/deploy/howToDeploy.md) 
 
