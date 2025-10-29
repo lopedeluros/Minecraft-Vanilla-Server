@@ -108,4 +108,7 @@ docker stack rm mcbot
 # Documentation
 
 - [Automatic deployment via shell script](./docs/deploy/howToDeploy.md) 
+- [Contributions](./docs/contributions/howToContribute.md)
+- [Custom messages](./docs/bot/customMessage.md)
+- [How to update](./docs/repository-update/howToUpdate.md)
 
